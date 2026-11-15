@@ -10,6 +10,7 @@ for bad in '/tests/' '/tools/' '/scripts/' '/\.github/' 'Makefile$' 'mise\.toml$
     if grep -qE "$bad" <<<"$list"; then echo "unexpected: $(grep -E "$bad" <<<"$list" | head -3)"; fail=1; fi
 done
 ver=$(basename "$zip" .zip); ver=${ver#FidelityForever-}
+ver=${ver%-forever} # the packager tags the Forever build onto the zip name
 v=$(unzip -p "$zip" FidelityForever/FidelityForever.toc | tr -d '\r' | sed -n 's/^## Version: //p')
 [ "$v" = "$ver" ] || { echo "TOC Version '$v' != zip version '$ver'"; fail=1; }
 [ $fail -eq 0 ] && echo "package ok: $zip"
