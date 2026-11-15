@@ -14,6 +14,7 @@ Also on [CurseForge](https://www.curseforge.com/wow/addons/fidelity-forever).
   sky, Characters & threads, Loading & memory, and Display & HDR. Audio has Output, Effects, Memory, and Gameplay
   sounds.
 - **Tooltips:** hover the "i" next to a setting to see what it does. Settings your client doesn't have are hidden.
+- **Search:** you can find any of these settings from the Options search box.
 - **Apply button:** nothing changes until you hit Apply. Until then, a bar at the bottom of the Options window shows
   how many changes you have waiting.
 - **Re-apply:** if the game's own Graphics menu (or a reset) changes one of your settings, that setting gets a Re-apply
