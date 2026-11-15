@@ -1,46 +1,67 @@
 # Fidelity Forever
 
-Graphics and audio settings for **WoW Forever**, from the game's Options > AddOns menu: presets, your own named
-settings, adaptive performance and screenshot mode. It sets the client's console variables (CVars), including many
-the game's own menu does not show.
+Graphics and audio settings for WoW Forever, including a lot that the game's own menu doesn't show. You get a few
+presets to start from, and you can save your own. It all lives in the normal Options window, under AddOns.
 
-## Features
-- **Presets**: Default, Performance, Balanced, Adaptive, High, Beyond Ultra and Screenshot. Presets are read-only;
-  change anything and you save it as a setting of your own (New, Rename, Delete, Copy from).
-- **101 settings on 12 pages**: Graphics (World, Ground clutter, Lighting & shadows, Effects & particles, Water & sky,
-  Characters & threads, Loading & memory, Display & HDR) and Audio (Output, Effects, Memory, Gameplay sounds). Every
-  setting explains itself in its "i" tooltip. Settings the client does not have are hidden.
-- **Nothing changes until you Apply**: edits are staged; a bar on every Options screen shows how many are pending.
-- **Drift**: if the game changes one of your values (its own Graphics menu, a reset), that row shows it with a
-  Re-apply button.
-- **Adaptive performance**: while your frame rate stays under a target, detail is lowered in five steps and restored
-  once it recovers. Your saved values never change. On in the Adaptive preset; any own setting can turn it on.
-- **Faster loading screens** (optional, per setting): short view distances at logout, your values back after login.
-- **Safety**: values known to crash the client ask first and save to disk before applying; a value the client refuses
-  is reported; changes made in combat wait until combat ends.
-- **Screenshot mode**: bind "Screenshot mode on/off" and "Back to my setting" in Key Bindings (no default keys).
-- **Troubleshooting**: Safe mode (Performance), Undo last apply, Restore the settings you had before installing.
-- Settings are searchable from the Options search box.
+Under the hood it changes the game's console variables (CVars).
 
-Slash commands: `/ff` (or `/fidelity`) opens the panel; `/ff safe`, `/ff undo`, `/ff probe` (saves what the client
-reports about every CVar into the saved variables, for bug reports).
+Also on [CurseForge](https://www.curseforge.com/wow/addons/fidelity-forever).
+
+## What it does
+- **Presets:** Default, Performance, Balanced, Adaptive, High, Beyond Ultra and Screenshot. You can't edit a preset
+  directly. Change something and you save it as your own setting, which you can rename, delete or copy.
+- **101 settings on 12 pages.** Graphics has World, Ground clutter, Lighting & shadows, Effects & particles, Water &
+  sky, Characters & threads, Loading & memory, and Display & HDR. Audio has Output, Effects, Memory, and Gameplay
+  sounds.
+- **Tooltips:** hover the "i" next to a setting to see what it does. Settings your client doesn't have are hidden.
+- **Apply button:** nothing changes until you hit Apply. Until then, a bar at the bottom of the Options window shows
+  how many changes you have waiting.
+- **Re-apply:** if the game's own Graphics menu (or a reset) changes one of your settings, that setting gets a Re-apply
+  button.
+- **Adaptive performance (optional):**
+  - If your frame rate stays under a target you set, it turns a few things down, then puts them back once things
+    calm down.
+  - It never changes your saved settings.
+  - The Adaptive preset has it on, and you can turn it on for your own settings.
+- **Faster loading screens (optional):** it shortens view distances while you're logged out, then puts yours back
+  after you log in.
+- **Crash-prone values:** a few values are known to crash the game. It asks before using them and saves your current
+  settings first.
+- **Refused values:** if the game refuses a value, you'll see a message.
+- **Combat:** anything you apply in combat waits until combat ends.
+- **Screenshot mode:** bind "Screenshot mode on/off" and "Back to my setting" under Key Bindings. No keys are bound by
+  default.
+- **Troubleshooting page:** Safe mode, Undo last apply, and a button to restore the settings you had before installing.
+
+## Commands
+- `/ff` or `/fidelity`: open the settings
+- `/ff safe`: switch to the Performance preset
+- `/ff undo`: undo the last apply
+- `/ff probe`: saves what your client reports about each setting. Handy for bug reports.
 
 ## Install
-Download the zip from Releases and extract it into `World of Warcraft/_forever_/Interface/AddOns/`.
+Grab the zip from [Releases](https://github.com/zmsl/FidelityForever/releases) or CurseForge, and unzip it into
+`World of Warcraft/_forever_/Interface/AddOns/`.
+
+## Bugs and ideas
+Open an [issue](https://github.com/zmsl/FidelityForever/issues). If a setting misbehaves, run `/ff probe` and include
+the result.
 
 ## Development
-- Target: WoW Forever only (`## Interface: 16001`). Game APIs were checked against the Forever UI source and the
-  Forever CVar registry (Ketho's BlizzardInterfaceResources, `forever` branch).
+- It's for WoW Forever only (`## Interface: 16001`). Game APIs were checked against the Forever UI source and the
+  Forever CVar list in Ketho's BlizzardInterfaceResources (`forever` branch).
 - No library dependencies.
-- `make bootstrap` once (Lua 5.1 + luacheck into `.lua/`, needs Python), then `make check` (lint, syntax, the headless
-  core test and the data test).
-- `Data.lua` holds the pages, CVars (label, range or options, tooltip) and presets, and is edited by hand.
-  `tests/data_test.lua` checks it: every preset value in range, no crash value in a preset, every CVar on exactly one
-  page, every setting with a tooltip.
-- Releases: push a `v*` tag; the release workflow checks, builds the zip with the BigWigs packager and attaches it to a
-  draft GitHub release for review (`make package-check` does the same build locally). Publishing the draft uploads that
-  zip to CurseForge (project `fidelity-forever`, 1807957) through `tools/cf_upload.py`; it needs the repository secret
-  `CF_API_KEY`. A tag with a `-` suffix (v0.2.0-rc.1) goes up as a beta.
+- Run `make bootstrap` once. It puts Lua 5.1 and luacheck in `.lua/` and needs Python.
+- Then `make check` runs lint, a syntax check, the core and data tests, and the release tool tests.
+- `Data.lua` has the pages, settings (label, range or options, tooltip) and presets. You edit it by hand, and
+  `tests/data_test.lua` checks it: preset values in range, no crash values in presets, every setting on exactly one
+  page and with a tooltip.
+- **Releasing:**
+  1. Push a `v*` tag. GitHub checks everything, builds the zip with the BigWigs packager and makes a draft release.
+     (`make package-check` does the same build locally.)
+  2. Publish the draft. That uploads the zip to CurseForge (`fidelity-forever`, 1807957) using the `CF_API_KEY`
+     secret.
+  3. A tag with a dash, like `v0.2.0-rc.1`, goes up as a beta.
 
 ## License
 GPL-3.0. See [LICENSE](LICENSE).
