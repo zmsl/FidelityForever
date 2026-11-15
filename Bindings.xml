@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="FIDELITYFOREVER_SCREENSHOT" header="FIDELITYFOREVER" category="ADDONS">
+		FidelityForever.ScreenshotToggle()
+	</Binding>
+	<Binding name="FIDELITYFOREVER_BACK" category="ADDONS">
+		FidelityForever.ScreenshotBack()
+	</Binding>
+</Bindings>

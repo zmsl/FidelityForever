@@ -1,0 +1,8 @@
+# Lua toolchain (scripts/bootstrap.sh) and packager output
+.lua/
+.release/
+# editor / assistant config
+.vscode/
+.luarc.json
+CLAUDE.local.md
+__pycache__/

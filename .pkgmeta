@@ -1,0 +1,20 @@
+package-as: FidelityForever
+
+enable-nolib-creation: no
+
+# Nothing is uploaded by the packager (release.yml passes -d). manual-changelog keeps it from generating one.
+manual-changelog:
+    filename: CHANGELOG.md
+    markup-type: markdown
+
+ignore:
+    - README.md
+    - CHANGELOG.md
+    - tests
+    - tools
+    - scripts
+    - .github
+    - .luacheckrc
+    - .editorconfig
+    - Makefile
+    - mise.toml
