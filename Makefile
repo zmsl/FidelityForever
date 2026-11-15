@@ -6,7 +6,7 @@ LUAC := $(if $(wildcard $(LUA_ENV)/bin/luac),$(LUA_ENV)/bin/luac,luac5.1)
 # BigWigs packager, pinned like Hekili Forever's release workflow (v2.6.1).
 PACKAGER_REF := e50a250f8705041e40f2fa1ddcb280a686d65aa0
 
-.PHONY: bootstrap lint syntax test check package package-check
+.PHONY: bootstrap lint syntax test tools-test check package package-check
 
 bootstrap:
 	scripts/bootstrap.sh
@@ -17,7 +17,9 @@ syntax:
 test:
 	$(LUA) tests/core_test.lua
 	$(LUA) tests/data_test.lua
-check: lint syntax test
+tools-test:
+	python3 -I tools/test_cf_upload.py
+check: lint syntax test tools-test
 package:
 	@mkdir -p $(LUA_ENV)
 	@test -s $(LUA_ENV)/release-$(PACKAGER_REF).sh || curl -fsSL https://raw.githubusercontent.com/BigWigsMods/packager/$(PACKAGER_REF)/release.sh -o $(LUA_ENV)/release-$(PACKAGER_REF).sh

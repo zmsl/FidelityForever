@@ -38,7 +38,9 @@ Download the zip from Releases and extract it into `World of Warcraft/_forever_/
   `tests/data_test.lua` checks it: every preset value in range, no crash value in a preset, every CVar on exactly one
   page, every setting with a tooltip.
 - Releases: push a `v*` tag; the release workflow checks, builds the zip with the BigWigs packager and attaches it to a
-  draft GitHub release for review. `make package-check` does the same build locally.
+  draft GitHub release for review (`make package-check` does the same build locally). Publishing the draft uploads that
+  zip to CurseForge (project `fidelity-forever`, 1807957) through `tools/cf_upload.py`; it needs the repository secret
+  `CF_API_KEY`. A tag with a `-` suffix (v0.2.0-rc.1) goes up as a beta.
 
 ## License
 GPL-3.0. See [LICENSE](LICENSE).

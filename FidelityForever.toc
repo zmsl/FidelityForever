@@ -3,6 +3,8 @@
 ## Title: Fidelity Forever
 ## Author: defzach
 ## X-License: GPL-3.0
+## X-Website: https://github.com/zmsl/FidelityForever
+## X-Curse-Project-ID: 1807957
 ## Notes: Graphics and audio presets, your own named settings and adaptive performance for WoW Forever, from Options > AddOns.
 ## SavedVariables: FidelityForeverDB
 ## SavedVariablesPerCharacter: FidelityForeverCharDB
