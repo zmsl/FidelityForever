@@ -563,8 +563,7 @@ function SG.BuildUI()
   local root = Settings.RegisterCanvasLayoutCategory(general, "Fidelity Forever")
   pages[#pages + 1] = general
 
-  -- Graphics and Audio are folders: they start expanded, and selecting one opens its first page instead of an empty
-  -- page. (The Settings list has no non-selectable entry for addon categories.)
+  -- Graphics and Audio are folders: selecting one opens its first page instead of an empty page. (The Settings list has no non-selectable entry for addon categories.)
   local folders = {}
   for _, group in ipairs(SG.GROUPS) do
     local folder = folders[group.section]
@@ -575,7 +574,6 @@ function SG.BuildUI()
       folderPage:SetScript("OnShow", function()
         C_Timer.After(0, function() Settings.OpenToCategory(folder.first:GetID()) end)
       end)
-      folder.category:SetExpanded(true)
       folders[group.section] = folder
     end
     local page = BuildGroupPage(group)
@@ -584,7 +582,6 @@ function SG.BuildUI()
     RegisterSearch(group, cat)
     pages[#pages + 1] = page
   end
-  root:SetExpanded(true)
   local profiles = BuildProfiles()
   Settings.RegisterCanvasLayoutSubcategory(root, profiles, "Profiles")
   pages[#pages + 1] = profiles
